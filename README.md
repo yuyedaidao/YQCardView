@@ -2,7 +2,7 @@
 个人项目中用于展示当前头像 当然也可做他用
 
 ###展示
-[](!https://github.com/yuyedaidao/YQCardView/blob/master/carView.gif)
+[图片](!https://github.com/yuyedaidao/YQCardView/blob/master/carView.gif)
 
 ###获取
 
