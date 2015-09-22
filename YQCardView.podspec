@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "YQCardView"
   s.version      = "1.0.0"
-  s.summary      = "A short description of YQCardView."
+  s.summary      = "个人项目中用于展示当前用户头像的框架"
 
   s.description  = <<-DESC
                    A longer description of YQCardView in Markdown format.
