@@ -45,11 +45,11 @@ static CGFloat const ZoomDelta = 0.4;
 
 - (nullable NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     NSArray *array = [super layoutAttributesForElementsInRect:rect];
-    
+    NSMutableArray *resultArray = [NSMutableArray array];
     //先确定当前滑到的位置
     CGFloat horizontalCenter = self.collectionView.contentOffset.x+CGRectGetWidth(self.collectionView.bounds)/2;
-    [array enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
+    [array enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes *_obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UICollectionViewLayoutAttributes *obj = [_obj copy];
         CGFloat distance = ABS(obj.center.x-horizontalCenter);
         if(distance<self.itemDistance){
             CGFloat zoom = (1-(distance/self.itemDistance))*ZoomDelta+1;
@@ -57,9 +57,9 @@ static CGFloat const ZoomDelta = 0.4;
         }else{
             obj.transform = CGAffineTransformIdentity;
         }
-        
+        [resultArray addObject:obj];
     }];
-    return array;
+    return resultArray;
 }
 
 //借鉴自喵神的微博 http://onevcat.com/2012/08/advanced-collection-view/
