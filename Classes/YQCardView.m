@@ -15,7 +15,7 @@ static NSString *const YQPlaceholderIdentifier = @"YQPlaceholderIdentifier";
     NSInteger _visibleCount;
 };
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+
 @property (nonatomic, strong) NSDictionary *registerInfo;
 @property (nonatomic, assign) NSInteger itemCount;
 @end
@@ -35,8 +35,8 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)prepare{
-
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[YQCardLayout alloc] initWithVisibleCount:_visibleCount]];
+    self.layout = [[YQCardLayout alloc] initWithVisibleCount:_visibleCount];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     
     NSAssert(self.registerInfo, @"您还没有注册任何可复用的cell信息");
     [self.registerInfo enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {

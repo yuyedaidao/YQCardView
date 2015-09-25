@@ -21,6 +21,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     YQCardView *cardView = [[YQCardView alloc] initWithVisibleCount:3 registerInfo:@{@"A":[UICollectionViewCell class]}];
     [self.view addSubview:cardView];
+    
     cardView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 140);
     //    cardView.frame = self.view.bounds;
     cardView.center = self.view.center;

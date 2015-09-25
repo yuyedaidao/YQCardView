@@ -26,6 +26,8 @@ static CGFloat const ZoomDelta = 0.4;
 - (instancetype)initWithVisibleCount:(NSInteger)visibleCount{
     if(self = [super init]){
         _visibleCount = visibleCount;
+        _zoomDelta = ZoomDelta;
+        _spaceTopBottom = SpaceTopBottom;
     }
     return self;
 }
@@ -33,10 +35,10 @@ static CGFloat const ZoomDelta = 0.4;
 - (void)prepareLayout{
     [super prepareLayout];
     //根据可见个数调整itemSize
-    CGFloat side = MIN(CGRectGetHeight(self.collectionView.frame)-2*SpaceTopBottom,CGRectGetWidth(self.collectionView.frame)/_visibleCount);
+    CGFloat side = MIN(CGRectGetHeight(self.collectionView.frame)-2*self.spaceTopBottom,CGRectGetWidth(self.collectionView.frame)/_visibleCount);
 //    CGFloat side = CGRectGetHeight(self.collectionView.frame)-2*SpaceTopBottom;
     self.itemSize = CGSizeMake(side, side);
-    self.sectionInset = UIEdgeInsetsMake(SpaceTopBottom, 0, SpaceTopBottom, 0);
+    self.sectionInset = UIEdgeInsetsMake(self.spaceTopBottom, 0, self.spaceTopBottom, 0);
     self.minimumLineSpacing = (CGRectGetWidth(self.collectionView.frame)-_visibleCount*self.itemSize.width)/(_visibleCount-1);
     self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     self.itemDistance = self.minimumLineSpacing+self.itemSize.width;
@@ -52,8 +54,9 @@ static CGFloat const ZoomDelta = 0.4;
         UICollectionViewLayoutAttributes *obj = [_obj copy];
         CGFloat distance = ABS(obj.center.x-horizontalCenter);
         if(distance<self.itemDistance){
-            CGFloat zoom = (1-(distance/self.itemDistance))*ZoomDelta+1;
+            CGFloat zoom = (1-(distance/self.itemDistance))*self.zoomDelta+1;
             obj.transform = CGAffineTransformMakeScale(zoom, zoom);
+            obj.zIndex = 1;
         }else{
             obj.transform = CGAffineTransformIdentity;
         }

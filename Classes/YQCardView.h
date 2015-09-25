@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YQCardLayout.h"
 
 @interface YQCardView : UIView
 
@@ -24,4 +24,7 @@
 
 @property (nonatomic, copy) UICollectionViewCell *(^cellForItemBlock)(NSIndexPath *indexPath);
 @property (nonatomic, copy) NSInteger (^itemNumberBlock)(void);
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) YQCardLayout *layout;
+
 @end

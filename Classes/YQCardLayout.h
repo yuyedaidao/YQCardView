@@ -10,4 +10,6 @@
 
 @interface YQCardLayout : UICollectionViewFlowLayout
 - (instancetype)initWithVisibleCount:(NSInteger)visibleCount;
+@property (nonatomic, assign) CGFloat zoomDelta;
+@property (nonatomic, assign) CGFloat spaceTopBottom;
 @end
